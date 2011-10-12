@@ -1,7 +1,7 @@
 {
   "name": "lonely-styles",
   "description": "a little program to determine which css styles aren't being used",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "https://github.com/jgallen23/lonely-styles",
   "authors": ["Greg Allen <@jgaui>"],
   "repository": {
@@ -14,7 +14,7 @@
     "resistance": "*"
   },
   "bin" : {
-    "lonely-selectors" : "./bin/lonely-selectors.js" 
+    "lonely-styles" : "./bin/lonely-styles" 
   }
 }
 
