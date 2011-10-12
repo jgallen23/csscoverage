@@ -1,0 +1,20 @@
+{
+  "name": "lonely-styles",
+  "description": "a little program to determine which css styles aren't being used",
+  "version": "0.0.1",
+  "homepage": "https://github.com/jgallen23/lonely-styles",
+  "authors": ["Greg Allen <@jgaui>"],
+  "repository": {
+    "type": "git",
+    "url": "https://jgallen23@github.com/jgallen23/lonely-styles.git"
+  },
+  "keywords": ["css", "stylesheets"],
+  "dependencies": {
+    "zombie": "*",
+    "resistance": "*"
+  },
+  "bin" : {
+    "lonely-selectors" : "./bin/lonely-selectors.js" 
+  }
+}
+
