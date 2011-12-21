@@ -1,0 +1,32 @@
+#!/usr/bin/env node
+
+var args = process.argv.slice(2);
+
+
+var print = function(coverage) {
+  for (var file in coverage.stylesheets) {
+    var ss = coverage.stylesheets[file];
+    console.log(file);
+    console.log('-------------------------------------');
+    for (var i = 0, c = ss.selectors.length; i < c; i++) {
+      var selector = ss.selectors[i];
+      if (selector.misses.length == 0)
+        continue
+      console.log('\t' + selector.text);
+      console.log('\t-------------------------------------');
+      console.log("\t\tHits: " + selector.hits.join(', '));
+      console.log("\t\tMisses: " + selector.misses.join(', '));
+      console.log("");
+    }
+  }
+};
+
+
+if (args.length != 0) {
+  var coverage = require('../lib/coverage');
+  coverage(args, function(coverage) {
+    print(coverage);
+  });
+} else {
+  console.log("Please pass in url(s)");
+}

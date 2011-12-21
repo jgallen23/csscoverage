@@ -1,21 +1,21 @@
 {
-  "name": "lonely-styles",
-  "description": "a little program to determine which css styles aren't being used",
-  "version": "0.0.2",
-  "homepage": "https://github.com/jgallen23/lonely-styles",
+  "name": "css-coverage",
+  "description": "an application to find selectors in your css files that aren't being used",
+  "version": "0.0.3",
+  "homepage": "https://github.com/jgallen23/css-coverage",
   "author": "Greg Allen <@jgaui> (http://jga.me)",
   "repository": {
     "type": "git",
-    "url": "https://jgallen23@github.com/jgallen23/lonely-styles.git"
+    "url": "https://jgallen23@github.com/jgallen23/css-coverage.git"
   },
-  "keywords": ["css", "stylesheets"],
+  "keywords": ["css", "stylesheets", "coverage"],
   "dependencies": {
     "zombie": "*",
     "request": "*",
     "resistance": "*"
   },
   "bin" : {
-    "lonely-styles" : "./bin/lonely-styles" 
+    "css-coverage" : "./bin/css-coverage" 
   }
 }
 
