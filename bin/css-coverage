@@ -3,7 +3,13 @@
 var fs = require('fs');
 var path = require('path');
 
-var argv = require('optimist').argv;
+var program = require('commander');
+
+program
+	.version('0.0.3')
+	.usage('[options] [urls]')
+	.option('-c', '--config', 'Config File')
+	.parse(process.argv)
 
 var print = function(coverage) {
   for (var file in coverage.stylesheets) {
@@ -30,7 +36,7 @@ var run = function(urls) {
   });
 };
 
-if (argv.config) {
+if (program.config) {
   var urls = [];
   fs.readFile(argv.config, 'utf8', function(err, data) {
     if (err) {
@@ -46,8 +52,8 @@ if (argv.config) {
     run(urls);
   });
 
-} else if (argv._.length !== 0) {
-  var urls = argv._;
+} else if (program.args) {
+  var urls = program.args;
   run(urls);
 } else {
   console.log("Please pass in url(s)");

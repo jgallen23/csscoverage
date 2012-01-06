@@ -10,7 +10,7 @@
   },
   "keywords": ["css", "stylesheets", "coverage"],
   "dependencies": {
-    "optimist": "*",
+    "commander": "*",
     "zombie": "*",
     "request": "*",
     "resistance": "*"
