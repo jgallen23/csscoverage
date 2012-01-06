@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 
+var fs = require('fs');
+var path = require('path');
+
 var argv = require('optimist').argv;
 
 var print = function(coverage) {
@@ -20,15 +23,32 @@ var print = function(coverage) {
   }
 };
 
-
-if (argv.config) {
-  console.log(argv.urls);
-} else if (argv._.length !== 0) {
-  var urls = argv._;
+var run = function(urls) {
   var coverage = require('../lib/coverage');
   coverage(urls, function(coverage) {
     print(coverage);
   });
+};
+
+if (argv.config) {
+  var urls = [];
+  fs.readFile(argv.config, 'utf8', function(err, data) {
+    if (err) {
+      console.log(argv.config + ' doesn\'t exist');
+      return;
+    }
+
+    var config = JSON.parse(data);
+    var baseUrl = config.baseUrl || '';
+    config.urls.forEach(function(url) {
+      urls.push(baseUrl + url);
+    });
+    run(urls);
+  });
+
+} else if (argv._.length !== 0) {
+  var urls = argv._;
+  run(urls);
 } else {
   console.log("Please pass in url(s)");
 }
