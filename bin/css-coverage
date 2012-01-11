@@ -5,11 +5,15 @@ var path = require('path');
 
 var program = require('commander');
 
+//console.log(process.argv);
 program
 	.version('0.0.3')
-	.usage('[options] [urls]')
-	.option('-c', '--config', 'Config File')
-	.parse(process.argv)
+  .usage('[options] [urls]')
+	.option('-c, --config <file>', 'Config File')
+  .option('-s, --server', 'Start Web Server')
+  .option('-p, --port <8000>', 'Web Server Port', '8000');
+
+program.parse(process.argv);
 
 var print = function(coverage) {
   for (var file in coverage.stylesheets) {
@@ -38,9 +42,9 @@ var run = function(urls) {
 
 if (program.config) {
   var urls = [];
-  fs.readFile(argv.config, 'utf8', function(err, data) {
+  fs.readFile(program.config, 'utf8', function(err, data) {
     if (err) {
-      console.log(argv.config + ' doesn\'t exist');
+      console.log(program.config + ' doesn\'t exist');
       return;
     }
 
@@ -52,6 +56,9 @@ if (program.config) {
     run(urls);
   });
 
+} else if (program.server) {
+  var app = require('../lib/server'); 
+  app.listen(program.port, "0.0.0.0");
 } else if (program.args) {
   var urls = program.args;
   run(urls);

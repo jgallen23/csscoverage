@@ -10,10 +10,12 @@
   },
   "keywords": ["css", "stylesheets", "coverage"],
   "dependencies": {
+		"express": "*",
     "commander": "*",
-    "zombie": "*",
+		"jade": "*",
     "request": "*",
-    "resistance": "*"
+    "resistance": "*",
+    "zombie": "*"
   },
   "bin" : {
     "css-coverage" : "./bin/css-coverage" 
