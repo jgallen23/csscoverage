@@ -1,0 +1,52 @@
+#!/usr/bin/env node
+
+var fs = require('fs');
+var path = require('path');
+var outputs = require('../lib/output');
+
+var program = require('commander');
+
+//console.log(process.argv);
+program
+	.version('0.0.3')
+  .usage('[options] [urls]')
+	.option('-c, --config <file>', 'Config File')
+  .option('-s, --server <port>', 'Start Web Server')
+  .option('-o, --output <type>', 'Output type', 'text');
+
+program.parse(process.argv);
+
+var run = function(urls) {
+  var coverage = require('../lib/coverage/csscoverage');
+  coverage(urls, function() {
+    outputs[program.output](this);
+  });
+};
+
+if (program.config) {
+  var urls = [];
+  fs.readFile(program.config, 'utf8', function(err, data) {
+    if (err) {
+      console.log(program.config + ' doesn\'t exist');
+      return;
+    }
+
+    var config = JSON.parse(data);
+    var baseUrl = config.baseUrl || '';
+    config.urls.forEach(function(url) {
+      urls.push(baseUrl + url);
+    });
+    run(urls);
+  });
+
+} else if (program.server) {
+  var app = require('../lib/server'); 
+  app.listen(program.server, "0.0.0.0");
+} else if (program.args) {
+  var urls = program.args;
+  run(urls);
+} else {
+  process.stdout.write(program.helpInformation());
+  program.emit('--help');
+  process.exit(1);
+}

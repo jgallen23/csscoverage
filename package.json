@@ -1,5 +1,5 @@
 {
-  "name": "css-coverage",
+  "name": "csscoverage",
   "description": "an application to find selectors in your css files that aren't being used",
   "version": "0.0.3",
   "homepage": "https://github.com/jgallen23/css-coverage",
@@ -10,15 +10,18 @@
   },
   "keywords": ["css", "stylesheets", "coverage"],
   "dependencies": {
+    "cdir": "*",
+    "debug": "*",
 		"express": "*",
     "commander": "*",
 		"jade": "*",
     "request": "*",
     "resistance": "*",
+    "strf": "*",
     "zombie": "*"
   },
   "bin" : {
-    "css-coverage" : "./bin/css-coverage" 
+    "csscoverage" : "./bin/csscoverage" 
   }
 }
 
