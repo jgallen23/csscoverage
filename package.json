@@ -2,11 +2,11 @@
   "name": "csscoverage",
   "description": "an application to find selectors in your css files that aren't being used",
   "version": "0.0.3",
-  "homepage": "https://github.com/jgallen23/css-coverage",
+  "homepage": "https://github.com/jgallen23/csscoverage",
   "author": "Greg Allen <@jgaui> (http://jga.me)",
   "repository": {
     "type": "git",
-    "url": "https://jgallen23@github.com/jgallen23/css-coverage.git"
+    "url": "https://jgallen23@github.com/jgallen23/csscoverage.git"
   },
   "keywords": ["css", "stylesheets", "coverage"],
   "dependencies": {

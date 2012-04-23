@@ -1,7 +1,7 @@
 {
-  "baseUrl": "http://ga.local.kindspark.com:2480/",
+  "baseUrl": "http://ga.local.kindspark.com:2480",
   "urls": [
-    "",
-    "about"
+    "/",
+    "/about"
   ]
 }

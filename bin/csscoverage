@@ -42,7 +42,7 @@ if (program.config) {
 } else if (program.server) {
   var app = require('../lib/server'); 
   app.listen(program.server, "0.0.0.0");
-} else if (program.args) {
+} else if (program.args.length != 0) {
   var urls = program.args;
   run(urls);
 } else {
