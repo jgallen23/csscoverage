@@ -6,12 +6,11 @@ var outputs = require('../lib/output');
 
 var program = require('commander');
 
-//console.log(process.argv);
 program
-	.version('0.0.3')
+  .version(JSON.parse(fs.readFileSync(__dirname + '/../package.json', 'utf8')).version)
   .usage('[options] [urls]')
 	.option('-c, --config <file>', 'Config File')
-  .option('-s, --server <port>', 'Start Web Server')
+  .option('-w, --web <port>', 'Start Web Server')
   .option('-o, --output <type>', 'Output type', 'text');
 
 program.parse(process.argv);
@@ -40,8 +39,9 @@ if (program.config) {
   });
 
 } else if (program.server) {
-  var app = require('../lib/server'); 
+  var app = require('../lib/web/app'); 
   app.listen(program.server, "0.0.0.0");
+  console.log('Server started on port '+program.server);
 } else if (program.args.length != 0) {
   var urls = program.args;
   run(urls);

@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  div.well
+    p Processing
+    ul
+      each url in urls
+        li= url
+
+
+block scripts
+  script
+    var id = '#{id}';
+    var timeout = null;
+
+    var check = function() {
+      if (timeout) clearTimeout(timeout);
+      timeout = setTimeout(function() {
+        $.get('/status', {
+          id: id
+        }, function(res) {
+          if (res.state == 'complete') {
+            window.location = '/results/'+id;
+          }
+        });
+      }, 5000);
+    };
+    check();
+

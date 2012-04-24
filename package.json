@@ -18,7 +18,14 @@
     "request": "*",
     "resistance": "*",
     "strf": "*",
-    "zombie": "*"
+    "zombie": "*",
+    "kue": "*",
+    "masher": "*",
+    "redis" : "*",
+    "stylus": "*"
+  },
+  "devDependencies": {
+    "stalk": "*"
   },
   "bin" : {
     "csscoverage" : "./bin/csscoverage" 

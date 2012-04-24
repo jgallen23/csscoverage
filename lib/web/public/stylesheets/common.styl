@@ -1,0 +1,236 @@
+success-color = #468847;
+warning-color = #F89406;
+error-color = #B94A48;
+
+.navbar {
+  border-radius: 0;
+  background-color: #2c2c2c;
+  background-image: -moz-linear-gradient(top, #333333, #222222);
+  background-image: -ms-linear-gradient(top, #333333, #222222);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#333333), to(#222222));
+  background-image: -webkit-linear-gradient(top, #333333, #222222);
+  background-image: -o-linear-gradient(top, #333333, #222222);
+  background-image: linear-gradient(top, #333333, #222222);
+  background-repeat: repeat-x;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+
+  .brand { 
+    color: #fff;
+    display: block;
+    padding: 8px 20px 12px;
+    font-size: 20px;
+    font-weight: 200;
+    color: #ffffff;
+    text-decoration: none;
+  }
+}
+
+a {
+  cursor: pointer;
+}
+
+#content {
+  padding: 15px 5px;
+}
+
+#homepage {
+  .add-urls {
+    width: 90%;
+    margin: 20px auto;
+
+    textarea {
+      width: 80%;
+      height: 100px;
+      display: block;
+    }
+  }
+}
+
+
+#results {
+  toc-width = 250px
+
+  .header {
+    margin: 0 0 20px 20px;
+  }
+
+  .results {
+    margin-left: toc-width+30;
+  }
+  .badge {
+    margin-left: 10px;
+  }
+
+  .stylesheets {
+    margin-left: 0 
+
+    .highlight {
+      background: #f0f0f0;
+    }
+  }
+
+  .stylesheet {
+    list-style: none;
+    margin: 20px 0;
+    padding: 20px 0;
+    border-bottom: 1px dotted #ccc;
+
+    &:first-child {
+      margin-top: 0;
+      padding-top: 0;
+    }
+
+    .header {
+
+      h2 {
+        display: inline-block;
+
+        a {
+          color: #000;
+        }
+
+        &:before {
+          content: "";
+          display: inline-block;
+          height: 15px;
+          width: 15px;
+          margin-right: 10px;
+        }
+
+      }
+      h2.success:before {
+        background-color: success-color;
+      }
+      h2.warning:before {
+        background-color: warning-color;
+      }
+      h2.error:before {
+        background-color: error-color;
+      }
+    }
+    .pages  {
+      margin: 20px 0 20px 20px;
+
+      h4 {
+        margin: 5px 0;
+      }
+
+      & > ul {
+        margin-left: 10px;
+      }
+
+      .page {
+        list-style: none;
+        margin: 20px 0;
+        border-left: 1px solid #ccc;
+        padding-left: 10px;
+
+        .title {
+
+          h3 {
+            display: inline-block;
+            margin-right: 10px;
+          }
+        }
+
+        &.success {
+          border-color: success-color;
+        }
+        &.warning {
+          border-color: warning-color;
+        }
+        &.error {
+          border-color: error-color;
+        }
+
+        .page-results {
+          .title {
+            border-bottom: 1px solid #ccc;
+          }
+
+          &:after {
+            content: "";
+            clear: both;
+            display: table;
+          }
+
+          .hits, .misses {
+            float: left;
+            width: 280px
+            margin-right: 50px;
+          }
+        }
+
+        .badge {
+          font-size: 10px
+        }
+
+      }
+
+      .selectors {
+        margin: 10px 0 10px 30px;
+
+        .selector {
+          font-size: 14px;
+          margin: 5px 0;
+        }
+      }
+    }
+  }
+  .toc {
+    float: left;
+    position: fixed;
+    width: toc-width;
+    border: 1px solid #ccc;
+    border-width: 1px 1px 1px 0;
+    ul {
+      margin: 0px;
+      list-style: none;
+
+      li {
+        border-right: 2px solid #ccc;
+
+        a {
+          padding: 10px 0 10px 10px;
+          display: block;
+          color: #000;
+
+          &:hover {
+            text-decoration: none;
+          }
+        }
+
+        &:hover {
+          background: #f5f5f5;
+        }
+      }
+    }
+
+    .toc-active {
+      background: #f0f0f0;
+    }
+
+    .toc-success {
+      border-color: success-color;
+    }
+
+    .toc-warning {
+      border-color: warning-color;
+    }
+
+    .toc-error {
+      border-color: error-color;
+    }
+  }
+}
+
+.tooltip {
+  font-size: 13px;
+
+  .tooltip-inner {
+    padding: 8px 13px;
+    max-width: inherit;
+  }
+}

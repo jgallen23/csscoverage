@@ -1,0 +1,27 @@
+{
+  "assetPath": "../public",
+  "outputPath": "../public/_compressed",
+  "mappingPath": "masher-mapping.json",
+  "groups": {
+    "common": {
+      "styles": [
+        "/vendor/bootstrap/css/bootstrap.css",
+        "/stylesheets/common.styl"
+      ],
+      "scripts": [
+        "/vendor/jquery/jquery-1.7.2.min.js",
+        "/vendor/toc/toc.js",
+        "/vendor/bootstrap/js/bootstrap.js"
+      ]
+    }
+  },
+  "plugins": {
+    "pre": [
+      "stylus"
+    ],
+    "post": [
+      "hash",
+      "compress"
+    ]
+  }
+}

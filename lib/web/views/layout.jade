@@ -1,0 +1,15 @@
+!!! 5
+html
+  head
+    title CSSCoverage
+    if !inProduction
+      script(src='/stalk.js')
+    != masher.style('common')
+  body
+    div#header.navbar
+      a.brand(href='/') CSSCoverage
+    div#content
+      block content
+
+    != masher.script('common')
+    block scripts
