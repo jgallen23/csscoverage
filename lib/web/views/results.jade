@@ -3,15 +3,6 @@ extends layout
   
 
 block content
-  mixin stats(stats)
-    if stats.percentage >= 90
-      classname = 'badge-success'
-    else if stats.percentage > 60
-      classname = 'badge-warning'
-    else
-      classname = 'badge-error'
-    span.badge(class=classname) #{stats.percentage}
-
   div#results
     form.re-run(method="POST", action="/run")
       input(type="hidden", name="runId", value=id)
