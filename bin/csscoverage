@@ -38,10 +38,10 @@ if (program.config) {
     run(urls);
   });
 
-} else if (program.server) {
+} else if (program.web) {
   var app = require('../lib/web/app'); 
-  app.listen(program.server, "0.0.0.0");
-  console.log('Server started on port '+program.server);
+  app.listen(program.web, "0.0.0.0");
+  console.log('Server started on port '+program.web);
 } else if (program.args.length != 0) {
   var urls = program.args;
   run(urls);
