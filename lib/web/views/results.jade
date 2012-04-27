@@ -43,7 +43,7 @@ block content
                   fullUrl = results.pages[url].url
                   li.page(class=getScoreClass(page))
                     div.title
-                      h3(data-title="#{fullUrl}") #{url} 
+                      h3.url(data-title="#{fullUrl}", class=getScoreClass(page)) #{url} 
                     dl
                       dt Selectors Matched
                       dd= page.hitCount
@@ -89,11 +89,11 @@ block scripts
   script
     $('div.toc').toc({
       container: 'ul.stylesheets',
-      selectors: 'h2'
+      selectors: 'h2,h3.url'
     }).on('selected', function(e, id) {
       //$(id).parent().parent().addClass('highlight');
     });
-    $('h2').each(function(i) {
+    $('h2,h3.url').each(function(i) {
       var el = $(this);
       var classname = 'toc-success';
       if (el.hasClass('warning')) {

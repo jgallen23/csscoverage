@@ -196,6 +196,8 @@ p.error {
     }
   }
   .toc {
+    height: 90%;
+    overflow-y: auto;
     float: left;
     position: fixed;
     width: toc-width;
@@ -238,6 +240,14 @@ p.error {
 
     .toc-error {
       border-color: error-color;
+    }
+
+    .toc-h3 {
+      margin-left: 20px;
+      a {
+        padding: 5px 0 5px 5px;
+        font-size: 12px;
+      }
     }
   }
 }
