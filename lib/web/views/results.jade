@@ -11,15 +11,16 @@ block content
 
     div.header
       h1 Results for #{results.domain}
+      span.date Run finished #{relativeDate(results.finishedOn)}
     div.toc
     div.results
       div.overview
+        p CSSCoverage found #{results.stylesheetCount} stylesheet(s) across #{results.paths.length} page(s). 
         h2(class=getScoreClass(results.stats)) Overview
         span Pages Tested:
         ul.pages
           each path in results.paths
             li #{results.domain}#{path}
-        p CSSCoverage found #{results.stylesheetCount} stylesheet(s) across #{results.paths.length} page(s). 
         table
           tbody
             tr

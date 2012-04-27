@@ -15,6 +15,7 @@
 		"express": "*",
     "commander": "*",
 		"jade": "*",
+    "relative-date": "*",
     "request": "*",
     "resistance": "*",
     "strf": "*",

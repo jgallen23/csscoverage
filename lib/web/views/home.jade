@@ -16,7 +16,7 @@ block content
         each run in runs
           li
             a(href="results/#{run.id}") #{run.domain} 
-            span on #{run.date}
+            span #{relativeDate(run.date)}
 
 block scripts
   script
