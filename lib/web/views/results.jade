@@ -1,6 +1,7 @@
 extends layout
 
-  
+block title
+  title CSSCoverage Results for #{results.domain}
 
 block content
   div#results
@@ -9,32 +10,55 @@ block content
       input.btn(type="submit", value="Rerun this test")
 
     div.header
-      h1 Results
+      h1 Results for #{results.domain}
     div.toc
     div.results
       div.overview
+        h2(class=getScoreClass(results.stats)) Overview
         span Pages Tested:
         ul.pages
           each path in results.paths
             li #{results.domain}#{path}
         p CSSCoverage found #{results.stylesheetCount} stylesheet(s) across #{results.paths.length} page(s). 
+        table
+          tbody
+            tr
+              td Selectors Found
+              td= results.stats.selectors
+            tr
+              td Selectors Matched
+              td= results.stats.hits 
+            tr
+              td Selectors Not Found
+              td= results.stats.misses 
+            tr.score
+              td Score
+              td= results.stats.percentage 
+
+      p Below is a listing of all the stylesheets found, along with what pages they were found on.  Each page is shows what selectors were used and what wasn't used.
       ul.stylesheets
         each stylesheet, path in results.stylesheets
           li.stylesheet
             div.header
-              h2(data-title="#{stylesheet.url}", class=getScoreClass(stylesheet.allStats)) #{stylesheet.filename}
+              h2(data-title="#{stylesheet.url}", class=getScoreClass(stylesheet.allStats)) 
+                a(href=stylesheet.url, target="_blank")
+                  #{stylesheet.filename}
               p #{stylesheet.filename} is being used on #{stylesheet.pageCount} pages.  Here's what we found:
-              dl
-                dt Selectors Found
-                dd= stylesheet.allStats.total
-                dt Selectors Matched
-                dd= stylesheet.allStats.hitCount
-                dt Selectors Not Found
-                dd= stylesheet.allStats.missCount
-                dt Score
-                dd= stylesheet.allStats.percentage
-                dt View Stylesheet
-                dd: a(href=stylesheet.url, target="_blank") #{stylesheet.url}
+
+              table
+                tbody
+                  tr
+                    td Selectors Found
+                    td= stylesheet.allStats.total 
+                  tr
+                    td Selectors Matched
+                    td= stylesheet.allStats.hitCount 
+                  tr
+                    td Selectors Not Found
+                    td= stylesheet.allStats.missCount 
+                  tr.score
+                    td Score
+                    td= stylesheet.allStats.percentage 
 
             div.pages
               h3 Pages that use #{stylesheet.filename}:
@@ -43,16 +67,26 @@ block content
                   fullUrl = results.pages[url].url
                   li.page(class=getScoreClass(page))
                     div.title
-                      h3.url(data-title="#{fullUrl}", class=getScoreClass(page)) #{url} 
-                    dl
-                      dt Selectors Matched
-                      dd= page.hitCount
-                      dt Selectors Not Found
-                      dd= page.missCount
-                      dt Score
-                      dd= page.percentage
-                      dt View Url 
-                      dd: a(href=fullUrl, target="_blank") #{fullUrl}
+                      h3.url(data-title="#{fullUrl}", class=getScoreClass(page))
+                        a(href=fullUrl, target="_blank") 
+                          if url == '/'
+                            | Homepage
+                          else
+                            | #{url}
+                    table
+                      tbody
+                        tr
+                          td Selectors Found
+                          td= page.total 
+                        tr
+                          td Selectors Matched
+                          td= page.hitCount 
+                        tr
+                          td Selectors Not Found
+                          td= page.missCount 
+                        tr.score
+                          td Score
+                          td= page.percentage 
                     div.page-results
                       div.hits
                         h4.title Used:
@@ -88,7 +122,7 @@ block content
 block scripts
   script
     $('div.toc').toc({
-      container: 'ul.stylesheets',
+      container: 'div.results',
       selectors: 'h2,h3.url'
     }).on('selected', function(e, id) {
       //$(id).parent().parent().addClass('highlight');

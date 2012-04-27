@@ -64,7 +64,7 @@ p.error {
   toc-width = 250px
 
   .header {
-    margin: 0 0 20px 20px;
+    margin: 20px 0;
   }
 
   .re-run { 
@@ -80,9 +80,49 @@ p.error {
   }
 
   .stylesheets {
-    margin-left: 0 
+    margin: 20px 0 0 0;
 
     .highlight {
+      background: #f0f0f0;
+    }
+  }
+
+  h2 {
+    &:before {
+      content: "";
+      display: inline-block;
+      height: 15px;
+      width: 15px;
+      margin-right: 10px;
+    }
+  }
+  h2.success:before {
+    background-color: success-color;
+  }
+  h2.warning:before {
+    background-color: warning-color;
+  }
+  h2.error:before {
+    background-color: error-color;
+  }
+
+  table {
+    width: 500px;
+    border-collapse: collapse;
+    margin: 20px 0;
+
+    td {
+      border-bottom: 1px solid #ccc
+      padding: 5px;
+      text-align: right;
+    }
+
+    td:first-child {
+      text-align: left;
+    }
+
+    .score {
+      font-weight: bold;
       background: #f0f0f0;
     }
   }
@@ -104,50 +144,37 @@ p.error {
         display: inline-block;
 
         a {
-          color: #000;
+          color: #333;
         }
 
-        &:before {
-          content: "";
-          display: inline-block;
-          height: 15px;
-          width: 15px;
-          margin-right: 10px;
-        }
-
-      }
-      h2.success:before {
-        background-color: success-color;
-      }
-      h2.warning:before {
-        background-color: warning-color;
-      }
-      h2.error:before {
-        background-color: error-color;
       }
     }
     .pages  {
-      margin: 20px 0 20px 20px;
+      margin: 20px 0;
 
       h4 {
         margin: 5px 0;
       }
 
       & > ul {
-        margin-left: 10px;
+        margin-left: 0px;
       }
 
       .page {
         list-style: none;
         margin: 20px 0;
-        border-left: 1px solid #ccc;
-        padding-left: 10px;
+        //border-left: 1px solid #ccc;
+        //padding-left: 10px;
 
         .title {
 
           h3 {
             display: inline-block;
             margin-right: 10px;
+            a {
+              color: #333;
+            }
+
           }
         }
 
@@ -213,7 +240,7 @@ p.error {
         a {
           padding: 10px 0 10px 10px;
           display: block;
-          color: #000;
+          color: #333;
 
           &:hover {
             text-decoration: none;
@@ -243,7 +270,7 @@ p.error {
     }
 
     .toc-h3 {
-      margin-left: 20px;
+      padding-left: 20px;
       a {
         padding: 5px 0 5px 5px;
         font-size: 12px;

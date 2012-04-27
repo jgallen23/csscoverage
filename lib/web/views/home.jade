@@ -10,6 +10,13 @@ block content
       h2 Enter Urls:
       textarea(name='urls')
       button.btn(type='submit') Go!
+    div.previous-runs
+      h2 Previous Runs:
+      ul
+        each run in runs
+          li
+            a(href="results/#{run.id}") #{run.domain} 
+            span on #{run.date}
 
 block scripts
   script
