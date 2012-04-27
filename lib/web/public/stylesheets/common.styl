@@ -1,7 +1,4 @@
-success-color = #468847;
-warning-color = #F89406;
-error-color = #B94A48;
-
+@import "vars.styl"
 .navbar {
   position: fixed;
   width: 100%;
@@ -26,6 +23,30 @@ error-color = #B94A48;
     font-weight: 200;
     color: #ffffff;
     text-decoration: none;
+  }
+
+  .colors {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+    height: 2px;
+  }
+  span {
+    display: block;
+    float: right;
+    height: 2px;
+    width: 20%;
+  }
+  .error {
+    background: error-color
+  }
+  .success {
+    background: success-color
+  }
+  .warning {
+    background: warning-color
   }
 }
 

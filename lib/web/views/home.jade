@@ -5,14 +5,20 @@ block head
 
 block content
   div#homepage
-    div.hero-unit
-      h1 CSSCoverage
+    div.hero
+      p.copy CSSCoverage is a tool to help you optimize your stylesheets.  As web developers we are constantly tweeking our sites and rarely do we go back and clean up any old stylesheet rules.  CSSCoverage is not going to magically solve your problems, but it will give you a starting point to optimizing your code.  In addition to maintainability, cleaning up your "lonely selectors" will improve load time on your site.  There's really no reason not to do it.
+    //-
+      blockquote
+        p The fastest rule is the one that doesn’t exist. There’s a common strategy to combine stylesheet “modules” into one file for production. This makes for one big collection of rules, where some (lots) of them are likely not used by particular part of the site/application. Getting rid of unused rules is one of the best things your can do to optimize CSS performance, as there’s less matching to be done in the first place. There are certain benefits of having one big file, of course, such as the reduced number of requests. But it should be possible to optimize at least critical parts of the app, by including only relevant styles.
+        a(href="http://perfectionkills.com/profiling-css-for-fun-and-profit-optimization-notes/") Profiling CSS for fun and profit. Optimization notes.
     form.add-urls(method="POST", action="/run")
       if (error)
         p.error= error
-      h2 Enter Urls:
+      h2 Get Started: 
+        small (Enter urls separated by new line)
+
       textarea(name='urls')
-      button.btn(type='submit') Go!
+      button.btn(type='submit') Do It! 
     div.previous-runs
       h2 Previous Runs:
       ul

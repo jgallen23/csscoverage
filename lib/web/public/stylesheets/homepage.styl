@@ -1,15 +1,42 @@
+@import "vars.styl"
 #homepage {
+  margin: 20px;
+  .hero {
+    margin: 40px 0;
+    padding: 40px 570px 40px 40px;
+    border-radius: 10px;
+
+    background: #f0f0f0 url(/images/csscoverage2.png) no-repeat right top;
+
+    .copy {
+      font-size: 16px;
+      line-height: 25px;
+      font-weight: 300;
+    }
+
+    img {
+      float: right;
+      margin: 0 0 20px 20px;
+    }
+
+    blockquote {
+      clear: right;
+    }
+  }
   .add-urls {
-    width: 90%;
-    margin: 20px 0;
+    margin: 40px 0;
 
     textarea {
       width: 100%;
-      border-radius: 10px;
-      border: 1px solid #ccc;
+      border-radius: 5px;
+      border: 1px solid #aaa;
       padding: 5px;
       height: 100px;
       display: block;
+    }
+
+    .btn {
+      margin-top: 10px;
     }
   }
   .previous-runs {
