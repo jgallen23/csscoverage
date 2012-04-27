@@ -10,10 +10,14 @@ block content
 
     div.header
       h1 Results
-      span #{results.domain}
     div.toc
     div.results
-      p CSSCoverage found #{results.stylesheetCount} stylesheet(s) across #{results.paths.length} page(s). 
+      div.overview
+        span Pages Tested:
+        ul.pages
+          each path in results.paths
+            li #{results.domain}#{path}
+        p CSSCoverage found #{results.stylesheetCount} stylesheet(s) across #{results.paths.length} page(s). 
       ul.stylesheets
         each stylesheet, path in results.stylesheets
           li.stylesheet

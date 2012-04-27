@@ -2,8 +2,6 @@
 html
   head
     title CSSCoverage
-    if !inProduction
-      script(src='/stalk.js')
     != masher.style('common')
   body
     div#header.navbar
@@ -13,3 +11,5 @@ html
 
     != masher.script('common')
     block scripts
+    if !inProduction
+      script(src='/stalk.js')

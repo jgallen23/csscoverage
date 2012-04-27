@@ -21,9 +21,12 @@ block scripts
         }, function(res) {
           if (res.state == 'complete') {
             window.location = '/results/'+id;
+          } else if (res.state == 'failed') {
+            window.location = '/?error='+encodeURIComponent(res.error);
+          } else {
+            check();
           }
         });
-        check();
       }, 5000);
     };
     check();

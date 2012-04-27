@@ -5,6 +5,8 @@ block content
     div.hero-unit
       h1 CSSCoverage
     form.add-urls(method="POST", action="/run")
+      if (error)
+        p.error= error
       h2 Enter Urls:
       textarea(name='urls')
       button.btn(type='submit') Go!
