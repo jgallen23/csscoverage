@@ -3,20 +3,23 @@ extends layout
 block title
   title CSSCoverage Results for #{results.domain}
 
+block head
+  != masher.style('results');
+
 block content
   div#results
-    form.re-run(method="POST", action="/run")
-      input(type="hidden", name="runId", value=id)
-      input.btn(type="submit", value="Rerun this test")
 
-    div.header
-      h1 Results for #{results.domain}
-      span.date Run finished #{relativeDate(results.finishedOn)}
     div.toc
     div.results
+      form.re-run(method="POST", action="/run")
+        input(type="hidden", name="runId", value=id)
+        input.btn(type="submit", value="Rerun this test")
+      div.header
+        h1 Results for #{results.domain}
+        span.date Run finished #{relativeDate(results.finishedOn)}
       div.overview
-        p CSSCoverage found #{results.stylesheetCount} stylesheet(s) across #{results.paths.length} page(s). 
         h2(class=getScoreClass(results.stats)) Overview
+        p.copy CSSCoverage found #{results.stylesheetCount} stylesheet(s) across #{results.paths.length} page(s). 
         span Pages Tested:
         ul.pages
           each path in results.paths
@@ -36,7 +39,7 @@ block content
               td Score
               td= results.stats.percentage 
 
-      p Below is a listing of all the stylesheets found, along with what pages they were found on.  Each page is shows what selectors were used and what wasn't used.
+      p Below is a listing of all the stylesheets found, along with what pages they were found on.  Each page is shows what selectors were used and which weren't.
       ul.stylesheets
         each stylesheet, path in results.stylesheets
           li.stylesheet
@@ -44,22 +47,23 @@ block content
               h2(data-title="#{stylesheet.url}", class=getScoreClass(stylesheet.allStats)) 
                 a(href=stylesheet.url, target="_blank")
                   #{stylesheet.filename}
-              p #{stylesheet.filename} is being used on #{stylesheet.pageCount} pages.  Here's what we found:
+              p.copy #{stylesheet.filename} is being used on #{stylesheet.pageCount} page(s).  Here's what we found:
 
-              table
-                tbody
-                  tr
-                    td Selectors Found
-                    td= stylesheet.allStats.total 
-                  tr
-                    td Selectors Matched
-                    td= stylesheet.allStats.hitCount 
-                  tr
-                    td Selectors Not Found
-                    td= stylesheet.allStats.missCount 
-                  tr.score
-                    td Score
-                    td= stylesheet.allStats.percentage 
+              if stylesheet.pageCount > 1
+                table
+                  tbody
+                    tr
+                      td Selectors Found
+                      td= stylesheet.allStats.total 
+                    tr
+                      td Selectors Matched
+                      td= stylesheet.allStats.hitCount 
+                    tr
+                      td Selectors Not Found
+                      td= stylesheet.allStats.missCount 
+                    tr.score
+                      td Score
+                      td= stylesheet.allStats.percentage 
 
             div.pages
               h3 Pages that use #{stylesheet.filename}:
@@ -68,7 +72,7 @@ block content
                   fullUrl = results.pages[url].url
                   li.page(class=getScoreClass(page))
                     div.title
-                      h3.url(data-title="#{fullUrl}", class=getScoreClass(page))
+                      h4.url(data-title="#{fullUrl}", class=getScoreClass(page))
                         a(href=fullUrl, target="_blank") 
                           if url == '/'
                             | Homepage
@@ -90,12 +94,12 @@ block content
                           td= page.percentage 
                     div.page-results
                       div.hits
-                        h4.title Used:
+                        h5.title Used:
                         ul.selectors
                           each count, selector in page.hits 
                             li.selector= selector
                       div.misses
-                        h4.title Not used:
+                        h5.title Not used:
                         ul.selectors
                           each count, selector in page.misses 
                             li.selector= selector
@@ -103,16 +107,16 @@ block content
                 ul.all-pages
                   li.page
                     div.title 
-                      h3 #{stylesheet.filename} across all pages 
+                      h4.all All pages 
                     div.page-results
                         div.hits
-                          h4.title Used on all pages:
+                          h5.title Used on all pages:
                           ul.selectors
                             each count, selector in stylesheet.allStats.hits
                               if (count == stylesheet.pageCount)
                                 li.selector= selector
                         div.misses
-                          h4.title Not used on any pages:
+                          h5.title Not used on any pages:
                           ul.selectors
                             each count, selector in stylesheet.allStats.misses
                               if (count == stylesheet.pageCount)
@@ -122,21 +126,26 @@ block content
 
 block scripts
   script
+    var selectors = 'h2,h4.url,h4.all'
     $('div.toc').toc({
       container: 'div.results',
-      selectors: 'h2,h3.url'
+      selectors: selectors 
     }).on('selected', function(e, id) {
       //$(id).parent().parent().addClass('highlight');
     });
-    $('h2,h3.url').each(function(i) {
+    $(selectors).each(function(i) {
       var el = $(this);
-      var classname = 'toc-success';
+      var classname = '';
       if (el.hasClass('warning')) {
-        classname = 'toc-warning'
+        classname = 'toc-warning';
       } else if (el.hasClass('error')) {
-        classname = 'toc-error'
+        classname = 'toc-error';
+      } else if (el.hasClass('success')) {
+        classname = 'toc-success';
       }
-      $('.toc li:eq('+i+')').addClass(classname);
+      if (classname) {
+        $('.toc li:eq('+i+')').addClass(classname);
+      }
         
 
     });

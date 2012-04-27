@@ -13,6 +13,16 @@
         "/vendor/toc/toc.js",
         "/vendor/bootstrap/js/bootstrap.js"
       ]
+    },
+    "homepage": {
+      "styles": [
+        "/stylesheets/homepage.styl"
+      ]
+    },
+    "results": {
+      "styles": [
+        "/stylesheets/results.styl"
+      ]
     }
   },
   "plugins": {
