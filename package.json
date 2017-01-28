@@ -12,7 +12,7 @@
   "dependencies": {
     "cdir": "*",
     "debug": "*",
-		"express": "*",
+		"express": ">=4.14.1",
     "commander": "*",
 		"jade": "*",
     "request": "*",
